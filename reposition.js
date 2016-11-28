@@ -13,22 +13,22 @@ define([
             allBreakpoints: {
                 container: null,                    /* This is a CSS selector */
                 position: null,                     /* Number to set the index to be at or 'first', 'last' */
-                searchDirectionFromElement: null    /* Can be "up" for parents and "down" for children */
+                searchDirectionFromElement: null    /* Can be "up" for parents, "down" for children and "same" for siblings */
             },
             desktopBreakpoint: {
                 container: null,                    /* This is a CSS selector */
                 position: null,                     /* Number to set the index to be at or 'first', 'last' */
-                searchDirectionFromElement: null    /* Can be "up" for parents and "down" for children */
+                searchDirectionFromElement: null    /* Can be "up" for parents, "down" for children and "same" for siblings */
             },
             tabletBreakpoint: {
                 container: null,                    /* This is a CSS selector */
                 position: null,                     /* Number to set the index to be at or 'first', 'last' */
-                searchDirectionFromElement: null    /* Can be "up" for parents and "down" for children */
+                searchDirectionFromElement: null    /* Can be "up" for parents, "down" for children and "same" for siblings */
             },
             mobileBreakpoint: {
                 container: null,                    /* This is a CSS selector */
                 position: null,                     /* Number to set the index to be at or 'first', 'last' */
-                searchDirectionFromElement: null    /* Can be "up" for parents and "down" for children */
+                searchDirectionFromElement: null    /* Can be "up" for parents, "down" for children and "same" for siblings */
             }
         },
 
@@ -63,6 +63,8 @@ define([
                 container = self.element.closest(options.container);
             } else if (options.searchDirectionFromElement === 'down') {
                 container = self.element.find(options.container).first();
+            } else if (options.searchDirectionFromElement === 'same') {
+                container = self.element.siblings(options.container);
             } else {
                 console.warn('Search direction "' + options.searchDirectionFromElement + '" invalid');
             }
